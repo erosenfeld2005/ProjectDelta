@@ -1,0 +1,97 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <script src="{% static 'darkmode.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body.dark-mode .login {
+            background-color: var(--dark-background);
+            box-shadow: none;
+        }
+
+        body.dark-mode .linkedText {
+            color: #8692b5;
+        }
+
+        /* Optional: Add hover effects */
+        body.dark-mode .btn-secondary:hover,
+        body.dark-mode .btn-primary:hover,
+        body.dark-mode .btn-danger:hover {
+            opacity: 0.9; /* Slight dimming on hover */
+            background-color: #232f3c !important;
+        }
+        body.dark-mode .btn:hover,
+        body.dark-mode .button:hover {
+            background-color: #8692b5 !important;
+        }
+
+        .btn-primary, .btn-secondary {
+            background-color: #7ba39a !important;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            background-color: #3F665E !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header and Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="/">Spotify Wrapped</a>
+            <a href="/contact_developers">Contact</a>
+            <a href="/accounts/signup" class="btn">Sign Up</a>
+        </nav>
+    </header>
+
+    <div class="login">
+        <div class="login-contianer">
+            <h4>Welcome Back!</h4>
+
+            <!-- Display messages -->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <!-- Render form fields with individual error handling -->
+                <div class="text-field">
+                    {{ form.name }}<br>
+                    {{ form.username.label }}<br>
+                    {{ form.username }}<br>
+                </div>
+
+                {% if form.username.errors %}
+                <div class="alert alert-danger">{{ form.username.errors }}</div>
+                {% endif %}
+
+                <div class="text-field">
+                    {{ form.password.label }}<br>
+                    {{ form.password }}<br>
+                </div>
+
+                {% if form.password.errors %}
+                    <div class="alert alert-danger">{{ form.password.errors }}</div>
+                {% endif %}
+
+                <div class="button-alt-option">
+                    <button type="submit" class="button">Log In</button>
+                    <p>Don't have an account? <a href="{% url 'signup' %}" class="linkedText">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
