@@ -2,6 +2,25 @@ from django.db import models
 
 # Create your models here.
 
+class Report(models.Model):
+    #can set to null so report is not delted if the user who made the report 
+    #deleted their account
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null = True) 
+    id = models.BigAutoField(primary_key=True)
+    body = models.TextField()
+    is_seen = models.BooleanField()
+    is_processed = models.BooleanField()
+    is_upheld = models.BooleanField()
+    
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id = models.BigAutoField(primary_key=True)
+    body = models.TextField()
+    upVotes = models.IntegerField(default=0)
+    upvoted_by = models.ManyToManyField(User, related_name="upvoted_posts", blank=True)
+    reports = models.ForeignKey(Report, on_delete=models.CASCADE)
+
 class Post(models.Model):
     title = models.CharField(maxlength = None)
     id = models.BigAutoField(primary_key=True)
@@ -46,7 +65,5 @@ class Post(models.Model):
     body = models.TextField()
     is_senior_citizen = models.BooleanField(default = False)
     upvoted_by = models.ManyToManyField(User, related_name="upvoted_posts", blank=True)
-
-
-class Comment(models.Model):
-    pass
+    comments = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    reports = models.ForeignKey(Report, on_delete=models.CASCADE)
