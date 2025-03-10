@@ -8,4 +8,4 @@ class UserauthenticationConfig(AppConfig):
     Configures user authentication
     """
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'userAuthentication'
+    name = 'project_delta.userAuthentication'

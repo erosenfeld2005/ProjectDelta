@@ -1,6 +1,6 @@
 from django.db import models
 
-from userAuthentication.models import CustomUser
+from userAuthentication.models import CustomUser, Developer
 
 # Create your models here.
 
@@ -47,7 +47,7 @@ class Post(models.Model):
     upVotes = models.IntegerField(default=0)
     body = models.TextField()
     is_senior_citizen = models.BooleanField(default = False)
-    upvoted_by = models.ManyToManyField(User, related_name="upvoted_posts", blank=True)
+    upvoted_by = models.ManyToManyField(CustomUser, related_name="upvoted_posts", blank=True)
 
 
 class Comment(models.Model):
