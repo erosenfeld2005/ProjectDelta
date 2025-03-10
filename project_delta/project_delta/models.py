@@ -21,7 +21,7 @@ class Post(models.Model):
         "Mentality": "Mentality",
         "UCL": "UCL",
         "EPL": "EPL",
-        "La Ligo": "La Ligo",
+        "La Liga": "La Liga",
         "Serie A": "Serie A",
         "Bundesliga": "Bundesliga",
         "MLS": "MLS",
@@ -31,7 +31,7 @@ class Post(models.Model):
     FILTER_MAPPING = {
         "Analysis": ["Team", "Player"],
         "Coaching": ["Training", "Matchday", "Mentality"],
-        "Discussion": ["UCL", "EPL", "La Ligo", "Serie A", "Bundesliga", "MLS"],
+        "Discussion": ["UCL", "EPL", "La Liga", "Serie A", "Bundesliga", "MLS"],
     }
 
     main_filter = models.CharField(
@@ -44,7 +44,7 @@ class Post(models.Model):
     )
     upVotes = models.IntegerField(default=0)
     body = models.TextField()
-    is_senior_citzen = models.BooleanField(default = False)
+    is_senior_citizen = models.BooleanField(default = False)
     upvoted_by = models.ManyToManyField(User, related_name="upvoted_posts", blank=True)
 
 
