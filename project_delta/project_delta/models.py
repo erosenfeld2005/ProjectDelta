@@ -9,25 +9,25 @@ class Post(models.Model):
     date_published = models.DateTimeField.auto_now_add()
     date_last_edit = models.DateTimeField.auto_now()
     is_edited = models.BooleanField()
-    MAIN_FILTER_CHOICES = [
-        ("Analysis", "Analysis"),
-        ("Coaching", "Coaching"),
-        ("Discussion", "Discussion"),
-    ]
+    MAIN_FILTER_CHOICES = {
+        "Analysis": "Analysis",
+        "Coaching": "Coaching",
+        "Discussion": "Discussion",
+    }
 
-    SUBFILTER_CHOICES = [
-        ("Training", "Training"),
-        ("Matchday", "Matchday"),
-        ("Mentality", "Mentality"),
-        ("UCL", "UCL"),
-        ("EPL", "EPL"),
-        ("La Ligo", "La Ligo"),
-        ("Serie A", "Serie A"),
-        ("Bundesliga", "Bundesliga"),
-        ("MLS", "MLS"),
-        ("Team", "Team"),
-        ("Player", "Player"),
-    ]
+    SUBFILTER_CHOICES = {
+        "Training": "Training",
+        "Matchday": "Matchday",
+        "Mentality": "Mentality",
+        "UCL": "UCL",
+        "EPL": "EPL",
+        "La Ligo": "La Ligo",
+        "Serie A": "Serie A",
+        "Bundesliga": "Bundesliga",
+        "MLS": "MLS",
+        "Team": "Team",
+        "Player": "Player",
+    }
     FILTER_MAPPING = {
         "Analysis": ["Team", "Player"],
         "Coaching": ["Training", "Matchday", "Mentality"],
@@ -50,4 +50,3 @@ class Post(models.Model):
 
 class Comment(models.Model):
     pass
-    #Shanaya's Edit For Testing
