@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class Report(models.Model):
     #can set to null so report is not delted if the user who made the report 
     #deleted their account
